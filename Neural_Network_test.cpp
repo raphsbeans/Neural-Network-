@@ -5,7 +5,6 @@
 #include <cmath>
 #include <fstream>
 #include <sstream>
-#include <stdio.h>
 
 using namespace std;
 
@@ -334,7 +333,9 @@ int main ()
     //The last one will have then one neuron plus the bias
     vector <unsigned> topology;
     trainData.getTopology (topology);
-
+    FILE*arq, *graph;
+    arq = fopen ("Erro.txt","w");
+    graph = fopen ("Graph.txt", "w");
     Net myNet (topology);
 
     vector <double> inputVals, targetVals, resultVals;
@@ -361,6 +362,10 @@ int main ()
         showVectorVals("Targets:", targetVals);
         assert(targetVals.size() == topology.back());
 
+        fprintf(arq, "%i %f\n", trainingPass,myNet.getRecentAverageError() );
+        if (trainingPass > 3000){
+            fprintf(graph, "%f %f\n", inputVals[0], resultVals[0]);
+        }
         myNet.backProp(targetVals);
 
         //Report how well the training is working, averaged over recent
