@@ -233,6 +233,7 @@ void Net::getResults (vector<double> &resultVals) const
 
 void Net::backProp (const vector<double> &targetVals)
 {
+    ///TODO: IS THIS THE BEST WAY?
     //Calculate overall net error - RMS
     Layer &outputLayer = m_layers.back();
     m_error = 0.0;
