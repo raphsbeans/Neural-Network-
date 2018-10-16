@@ -364,7 +364,7 @@ int main ()
         assert(targetVals.size() == topology.back());
 
         fprintf(arq, "%i %f\n", trainingPass,myNet.getRecentAverageError() );
-        if (trainingPass > 3000){
+        if (trainingPass > 1000){
             fprintf(graph, "%f %f\n", inputVals[0], resultVals[0]);
         }
         myNet.backProp(targetVals);
